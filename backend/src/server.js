@@ -4,11 +4,17 @@ const notesRoutes = require('./routes/notesRoutes');
 const connectDB = require('./config/db')
 const rateLimiter = require('./middleware/rateLimiter')
 require('dotenv').config()
+const cors = require("cors")
 
 
 //middleware
+app.use(cors({
+    origin:"http://localhost:5173"
+}))
 app.use(express.json());
-app.use(rateLimiter)
+
+// app.use(rateLimiter)
+
 //routes
 app.use('/api/notes',notesRoutes)
 
